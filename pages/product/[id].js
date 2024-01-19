@@ -22,6 +22,7 @@ import Image from 'next/image'
 import { FiPlus } from "react-icons/fi";
 import { useRouter } from "next/router";
 import { parseCookies } from "nookies";
+import baseUrl from "@/helper/baseUrl";
 // import baseUrl from "@/helper/BaseUrl";
 
 const ProductId = ({ productid }) => {
@@ -34,13 +35,13 @@ const ProductId = ({ productid }) => {
 
   const deleteProduct = async () => {
     const { res } = await axios.delete(
-      `http://localhost:3000/api/product/${productid._id}`
+      `${baseUrl}/api/product/${productid._id}`
     );
     await router.push("/");
   };
   const AddtoCart = async () => {
     const { data } = await axios.put(
-      `http://localhost:3000/api/cart`,
+      `${baseUrl}/api/cart`,
       {
         quantity,
         productId: productid._id,
@@ -100,7 +101,7 @@ const ProductId = ({ productid }) => {
 };
 
 export async function getServerSideProps({ params: { id } }) {
-  const { data } = await axios.get(`http://localhost:3000/api/product/${id}`);
+  const { data } = await axios.get(`${baseUrl}/api/product/${id}`);
   // const data = await res.json();
 
   return {
@@ -111,7 +112,7 @@ export async function getServerSideProps({ params: { id } }) {
 }
 
 // export async function getStaticProps({ params: { id } }) {
-//   const { data } = await axios.get(`http://localhost:3000/api/product/${id}`);
+//   const { data } = await axios.get(`${baseUrl}/api/product/${id}`);
 //   // const data = await res.json();
 
 //   return {

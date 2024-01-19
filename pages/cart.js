@@ -4,6 +4,7 @@ import { parseCookies } from "nookies";
 import Image from "next/image";
 // import  Button  from "antd";
 import StripeCheckout from "react-stripe-checkout";
+import baseUrl from "@/helper/baseUrl";
 // import baseUrl from "@/helper/BaseUrl";
 const Cart = ({ products }) => {
   // const router = useRouter();
@@ -12,7 +13,7 @@ const Cart = ({ products }) => {
 
   const handleRemove = async (pid) => {
     console.log(pid);
-    const res = await fetch(`http://localhost:3000/api/cart`, {
+    const res = await fetch(`${baseUrl}/api/cart`, {
       method: "DELETE",
 
       headers: {
@@ -26,7 +27,7 @@ const Cart = ({ products }) => {
     let data = await res.json();
     setCartProduct(data);
     console.log(data);
-    window.location.reload(`http://localhost:3000/api/cart`);
+    window.location.reload(`${baseUrl}/api/cart`);
   };
   let price = 0;
 
@@ -35,7 +36,7 @@ const Cart = ({ products }) => {
   const handletoken = async (paymentInfo) => {
     console.log(paymentInfo);
 
-    const data = await fetch(`http://localhost:3000/api/payment`, {
+    const data = await fetch(`${baseUrl}/api/payment`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -154,7 +155,7 @@ export async function getServerSideProps(ctx) {
     };
   }
 
-  const data = await fetch(`http://localhost:3000/api/cart`, {
+  const data = await fetch(`${baseUrl}/api/cart`, {
     method: "GET",
     headers: {
       Authorization: token,

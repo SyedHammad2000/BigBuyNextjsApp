@@ -4,6 +4,7 @@ import { Button } from "@chakra-ui/react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
+import baseUrl from "@/helper/baseUrl";
 // import baseUrl from "@/helper/BaseUrl";
 
 const signup = () => {
@@ -18,7 +19,7 @@ const signup = () => {
     console.log(password);
 
     try {
-      const { data } = await axios.post(`http://localhost:3000/api/signup`, {
+      const { data } = await axios.post(`${baseUrl}/api/signup`, {
         name,
         email,
         password,

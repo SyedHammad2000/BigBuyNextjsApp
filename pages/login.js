@@ -5,6 +5,7 @@ import { Button } from "@chakra-ui/react";
 import cookie from "js-cookie";
 import axios from "axios";
 import { useRouter } from "next/router";
+import baseUrl from "@/helper/baseUrl";
 // import baseUrl from "@/helper/BaseUrl";
 
 const login = () => {
@@ -17,7 +18,7 @@ const login = () => {
 
     try {
       const { data } = await axios.post(
-        `http://localhost:3000/api/login`,
+        `${baseUrl}/api/login`,
         {
           email,
           password,
