@@ -17,7 +17,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { AiFillDelete } from "react-icons/ai";
-import Image from 'next/image'
+import Image from "next/image";
 // import {} from "react-icons/bi";
 import { FiPlus } from "react-icons/fi";
 import { useRouter } from "next/router";
@@ -64,7 +64,11 @@ const ProductId = ({ productid }) => {
     >
       <div className="w-96 h-96 text-center bg-green-100  rounded-xl ">
         <div className="flex justify-center items-center my-2 hover:opacity-65">
-          <Image src={productid.mediaurl} className="w-52 h-48 rounded-lg" alt="Product" />
+          <img
+            src={productid.mediaurl}
+            className="w-52 h-48 rounded-lg"
+            alt="Product"
+          />
         </div>
         <h1>{productid.name}</h1>
         <p>US:${productid.price}</p>

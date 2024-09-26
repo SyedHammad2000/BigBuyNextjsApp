@@ -2,21 +2,22 @@ import React, { useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 // import baseUrl from "@/helper/BaseUrl";
-import Image from "next/image"
+import Image from "next/image";
 import baseUrl from "@/helper/baseUrl";
-
-
 
 const page = ({ products }) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1);
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [productsPerPage] = useState(4)
+  const [productsPerPage] = useState(4);
   // Get current products
-  const indexOfLastProduct = currentPage * productsPerPage
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct)
-  return(
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+  return (
     <div className="">
       <div className="bg-white">
         <h2 className="text-center">Products</h2>
@@ -24,12 +25,17 @@ const page = ({ products }) => {
           <div className=" *:font-mono mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {currentProducts.map((product) => (
               <div key={product._id} className="group relative">
-                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                {/* <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
                   <Image
                     src={product.mediaurl}
                     alt={product.name}
                     className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                  />
+                  /> */}
+                <div
+                  className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg
+                  gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80"
+                >
+                  <img src={product.mediaurl} alt="" srcset="" />
                 </div>
                 <div className="mt-4 flex justify-between">
                   <div>
@@ -61,7 +67,7 @@ const page = ({ products }) => {
         <button
           className="bg-blue-500 ml-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
           onClick={() => setCurrentPage(currentPage + 1)}
-          disabled={indexOfLastProduct>=products.length}
+          disabled={indexOfLastProduct >= products.length}
         >
           Next
         </button>
@@ -80,8 +86,6 @@ const page = ({ products }) => {
 //     },
 //   };
 // };
-
-
 
 export const getServerSideProps = async () => {
   const { data } = await axios.get(`${baseUrl}/api/product`);
