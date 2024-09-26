@@ -15,6 +15,7 @@ import {
   ButtonGroup,
   Button,
   Input,
+  Img,
 } from "@chakra-ui/react";
 import { AiFillDelete } from "react-icons/ai";
 import Image from "next/image";
@@ -64,7 +65,7 @@ const ProductId = ({ productid }) => {
     >
       <div className="w-96 h-96 text-center bg-green-100  rounded-xl ">
         <div className="flex justify-center items-center my-2 hover:opacity-65">
-          <img
+          <Img
             src={productid.mediaurl}
             className="w-52 h-48 rounded-lg"
             alt="Product"
