@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Link from "next/link";
-// import baseUrl from "@/helper/BaseUrl";
-import Image from "next/image";
 import baseUrl from "@/helper/baseUrl";
 
 const page = ({ products }) => {
