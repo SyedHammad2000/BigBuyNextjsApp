@@ -29,11 +29,6 @@ const page = ({ products }) => {
                     alt={product.name}
                     className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                   />
-                <div
-                  className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg
-                  gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80"
-                >
-                  <img src={product.mediaurl} alt="" srcset="" />
                 </div>
                 <div className="mt-4 flex justify-between">
                   <div>
@@ -74,20 +69,8 @@ const page = ({ products }) => {
   );
 };
 
-// export const getStaticProps = async () => {
-//   const { data } = await axios.get(`${baseUrl}/api/product`);
-//   // const data = await res.json();
-
-//   return {
-//     props: {
-//       products: data,
-//     },
-//   };
-// };
-
 export const getServerSideProps = async () => {
   const { data } = await axios.get(`${baseUrl}/api/product`);
-  // const data = await res.json();
 
   return {
     props: {
